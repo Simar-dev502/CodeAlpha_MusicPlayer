@@ -6,7 +6,7 @@ A modern and responsive web-based music player built using **HTML, CSS, and Java
 
 ## 🚀 Live Demo
 
-🔗 melodifymusicweb.netlify.app
+🔗 https://melodifymusicweb.netlify.app/
 🔗 https://code-alpha-music-player-ruddy.vercel.app/
 
 ---
