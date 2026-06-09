@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Melodify · Music Player</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app" class="player">
+    <!-- Header -->
+    <header class="player-header">
+      <div class="brand">
+        <i class="fas fa-headphones-alt"></i>
+        <span>Melodify</span>
+      </div>
+      <div class="header-actions">
+        <i class="fas fa-search"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-cog" id="settingsBtn"></i>
+        <i class="fas fa-bars" id="menuBtn"></i>
+      </div>
+    </header>
+
+    <!-- Cover & Info -->
+    <section class="cover-section">
+      <div class="cover-art" id="coverArt">
+        <i class="fas fa-music"></i>
+      </div>
+      <div class="track-info">
+        <h2 id="trackTitle">Midnight Dreams</h2>
+        <p id="trackArtist">Aurora Waves</p>
+        <span class="badge" id="trackAlbum">• Into the Night</span>
+      </div>
+    </section>
+
+    <!-- Progress -->
+    <div class="progress-area">
+      <div class="time-row">
+        <span id="currentTime">0:00</span>
+        <span id="durationTime">3:42</span>
+      </div>
+      <div class="progress-bar" id="progressBar">
+        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Album Selector -->
+    <div class="album-tabs" id="albumTabs"></div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <i class="fas fa-shuffle" id="shuffleBtn"></i>
+      <i class="fas fa-step-backward" id="prevBtn"></i>
+      <i class="fas fa-play-circle" id="playBtn"></i>
+      <i class="fas fa-step-forward" id="nextBtn"></i>
+      <i class="fas fa-repeat" id="repeatBtn"></i>
+      <i class="fas fa-volume-down" id="volumeDownBtn"></i>
+      <i class="fas fa-volume-up" id="volumeUpBtn"></i>
+      <span class="volume-label" id="volumeDisplay">65%</span>
+    </div>
+
+    <!-- Playlist -->
+    <div class="playlist">
+      <div class="playlist-header">
+        <span id="playlistTitle">Next up</span>
+        <span id="playlistCount"><i class="fas fa-list-ul"></i> 5 tracks</span>
+      </div>
+      <div id="playlistContainer">
+        <!-- items injected by JS -->
+      </div>
+    </div>
+
+    <div class="menu-panel hidden" id="menuPanel">
+      <div class="menu-card">
+        <div class="menu-card-header">
+          <h3 id="menuTitle">Menu</h3>
+          <button id="closeMenuBtn" aria-label="Close menu">×</button>
+        </div>
+        <div class="menu-card-body">
+          <p>Quick controls and app settings.</p>
+          <div class="panel-buttons">
+            <button id="panelShuffleBtn">Toggle Shuffle</button>
+            <button id="panelRepeatBtn">Cycle Repeat</button>
+            <button id="panelVolumeDownBtn">Volume -</button>
+            <button id="panelVolumeUpBtn">Volume +</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
