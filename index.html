@@ -3,94 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Melodify · Music Player</title>
+  <meta name="theme-color" content="#090b10">
+  <title>Melodify — Your Sound, Your Space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="app" class="player">
-    <!-- Header -->
-    <header class="player-header">
-      <div class="brand">
-        <i class="fas fa-headphones-alt"></i>
-        <span>Melodify</span>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Melodify home">
+        <span class="brand-mark"><i class="fa-solid fa-wave-square"></i></span>
+        <span>melodify<span class="brand-dot">.</span></span>
+      </a>
+      <div class="nav-label">MENU</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="home"><i class="fa-solid fa-house"></i> Home</button>
+        <button class="nav-item" data-view="explore"><i class="fa-solid fa-compass"></i> Explore</button>
+        <button class="nav-item" data-view="favorites"><i class="fa-solid fa-heart"></i> Favorites</button>
+        <button class="nav-item" data-view="recent"><i class="fa-solid fa-clock-rotate-left"></i> Recently played</button>
+      </nav>
+      <div class="sidebar-section">
+        <div class="sidebar-heading"><span>YOUR LIBRARY</span><button id="createPlaylistBtn" title="Create playlist" aria-label="Create playlist"><i class="fa-solid fa-plus"></i></button></div>
+        <div id="libraryPlaylists" class="library-list"></div>
       </div>
-      <div class="header-actions">
-        <i class="fas fa-search"></i>
-        <i class="fas fa-heart"></i>
-        <i class="fas fa-cog" id="settingsBtn"></i>
-        <i class="fas fa-bars" id="menuBtn"></i>
-      </div>
-    </header>
-
-    <!-- Cover & Info -->
-    <section class="cover-section">
-      <div class="cover-art" id="coverArt">
-        <i class="fas fa-music"></i>
-      </div>
-      <div class="track-info">
-        <h2 id="trackTitle">Midnight Dreams</h2>
-        <p id="trackArtist">Aurora Waves</p>
-        <span class="badge" id="trackAlbum">• Into the Night</span>
-      </div>
-    </section>
-
-    <!-- Progress -->
-    <div class="progress-area">
-      <div class="time-row">
-        <span id="currentTime">0:00</span>
-        <span id="durationTime">3:42</span>
-      </div>
-      <div class="progress-bar" id="progressBar">
-        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
-      </div>
-    </div>
-
-    <!-- Album Selector -->
-    <div class="album-tabs" id="albumTabs"></div>
-
-    <!-- Controls -->
-    <div class="controls">
-      <i class="fas fa-shuffle" id="shuffleBtn"></i>
-      <i class="fas fa-step-backward" id="prevBtn"></i>
-      <i class="fas fa-play-circle" id="playBtn"></i>
-      <i class="fas fa-step-forward" id="nextBtn"></i>
-      <i class="fas fa-repeat" id="repeatBtn"></i>
-      <i class="fas fa-volume-down" id="volumeDownBtn"></i>
-      <i class="fas fa-volume-up" id="volumeUpBtn"></i>
-      <span class="volume-label" id="volumeDisplay">65%</span>
-    </div>
-
-    <!-- Playlist -->
-    <div class="playlist">
-      <div class="playlist-header">
-        <span id="playlistTitle">Next up</span>
-        <span id="playlistCount"><i class="fas fa-list-ul"></i> 5 tracks</span>
-      </div>
-      <div id="playlistContainer">
-        <!-- items injected by JS -->
-      </div>
-    </div>
-
-    <div class="menu-panel hidden" id="menuPanel">
-      <div class="menu-card">
-        <div class="menu-card-header">
-          <h3 id="menuTitle">Menu</h3>
-          <button id="closeMenuBtn" aria-label="Close menu">×</button>
+      <div class="sidebar-bottom">
+        <div class="upgrade-card">
+          <div class="upgrade-icon"><i class="fa-solid fa-headphones"></i></div>
+          <strong>Made for your mood</strong>
+          <p>Your personal space for every beat.</p>
         </div>
-        <div class="menu-card-body">
-          <p>Quick controls and app settings.</p>
-          <div class="panel-buttons">
-            <button id="panelShuffleBtn">Toggle Shuffle</button>
-            <button id="panelRepeatBtn">Cycle Repeat</button>
-            <button id="panelVolumeDownBtn">Volume -</button>
-            <button id="panelVolumeUpBtn">Volume +</button>
-          </div>
-        </div>
+        <div class="sidebar-foot"><span class="status-dot"></span> Your music, your rules</div>
       </div>
-    </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark"><i class="fa-solid fa-wave-square"></i></span> melodify<span class="brand-dot">.</span></div>
+        <div class="history-actions"><button class="round-btn" id="backBtn" aria-label="Back"><i class="fa-solid fa-chevron-left"></i></button><button class="round-btn" id="forwardBtn" aria-label="Forward"><i class="fa-solid fa-chevron-right"></i></button></div>
+        <label class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input id="searchInput" type="search" placeholder="Search songs, artists, albums..." autocomplete="off"><kbd>⌘ K</kbd></label>
+        <button class="profile-button" id="settingsBtn" aria-label="Player settings"><i class="fa-solid fa-sliders"></i></button>
+      </header>
+
+      <section class="content-view" id="homeView">
+        <div class="welcome-row"><div><p class="eyebrow">YOUR PERSONAL SOUNDTRACK</p><h1>Feel every <span>beat.</span></h1><p class="welcome-subtitle">A little music makes everything better.</p></div><div class="date-chip"><i class="fa-regular fa-sun"></i> GOOD VIBES ONLY</div></div>
+        <section class="featured-card" id="featuredCard">
+          <div class="featured-copy"><span class="featured-tag"><i class="fa-solid fa-sparkles"></i> EDITOR'S PICK</span><p class="featured-overline">A COLLECTION FOR EVERY MOMENT</p><h2>Find your<br><span>frequency.</span></h2><p class="featured-description">From timeless classics to the latest party anthems — press play and let the music take over.</p><button class="primary-btn" id="featuredPlayBtn"><i class="fa-solid fa-play"></i> Start listening</button></div>
+          <div class="featured-art"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-disc"><div class="disc-center"><i class="fa-solid fa-wave-square"></i></div></div><div class="floating-note note-one">♪</div><div class="floating-note note-two">♫</div></div>
+        </section>
+        <section class="section-block"><div class="section-heading"><div><p class="eyebrow">PICK YOUR VIBE</p><h2>Browse albums</h2></div><span class="section-hint">Choose a collection to explore</span></div><div class="album-grid" id="albumGrid"></div></section>
+        <section class="section-block"><div class="section-heading"><div><p class="eyebrow">BACK IN THE GROOVE</p><h2>Recently played</h2></div><button class="text-button" data-view-link="recent">See all <i class="fa-solid fa-arrow-right"></i></button></div><div class="track-list compact-list" id="homeRecent"></div></section>
+      </section>
+
+      <section class="content-view hidden" id="exploreView"><div class="page-heading"><p class="eyebrow">DISCOVER SOMETHING GOOD</p><h1>Explore <span>music.</span></h1><p>Search through your albums and find your next favorite.</p></div><div class="filter-row" id="albumFilters"></div><div class="track-list" id="exploreTracks"></div></section>
+      <section class="content-view hidden" id="favoritesView"><div class="page-heading"><p class="eyebrow">YOUR PERSONAL COLLECTION</p><h1>Liked <span>songs.</span></h1><p>The tracks you want to keep close.</p></div><div class="track-list" id="favoriteTracks"></div></section>
+      <section class="content-view hidden" id="recentView"><div class="page-heading"><p class="eyebrow">PLAY IT AGAIN</p><h1>Recently <span>played.</span></h1><p>Your listening journey, all in one place.</p></div><div class="track-list" id="recentTracks"></div></section>
+      <section class="content-view hidden" id="playlistView"><div class="page-heading"><p class="eyebrow">YOUR LIBRARY</p><h1 id="playlistViewTitle">Your <span>playlist.</span></h1><p id="playlistViewSubtitle">A collection made by you.</p></div><div class="track-list" id="customPlaylistTracks"></div></section>
+      <section class="content-view hidden" id="searchView"><div class="page-heading"><p class="eyebrow">RESULTS</p><h1>Search <span>results.</span></h1><p id="searchSummary">Find your sound.</p></div><div class="track-list" id="searchResults"></div></section>
+    </main>
+
+    <aside class="queue-panel" id="queuePanel">
+      <div class="queue-heading"><div><p class="eyebrow">UP NEXT</p><h3>Your queue</h3></div><button class="icon-button" id="closeQueueBtn" aria-label="Close queue"><i class="fa-solid fa-xmark"></i></button></div>
+      <div class="queue-now"><span class="queue-label">NOW PLAYING</span><div id="queueCurrent" class="queue-current"></div></div>
+      <div class="queue-up-next"><div class="queue-subhead"><span>COMING UP</span><button class="text-button" id="clearQueueBtn">Clear</button></div><div id="queueTracks"></div></div>
+      <p class="queue-empty hidden" id="queueEmpty">Your queue is clear. Pick a song to get started.</p>
+    </aside>
   </div>
 
+  <footer class="player-bar">
+    <div class="now-playing">
+      <div class="mini-cover" id="miniCover"><i class="fa-solid fa-music"></i></div>
+      <div class="mini-meta"><strong id="miniTitle">Choose a song</strong><span id="miniArtist">Your soundtrack starts here</span></div>
+      <button class="icon-button like-button" id="likeCurrentBtn" aria-label="Add to favorites"><i class="fa-regular fa-heart"></i></button>
+    </div>
+    <div class="player-center">
+      <div class="player-controls"><button class="control-button" id="shuffleBtn" aria-label="Shuffle"><i class="fa-solid fa-shuffle"></i></button><button class="control-button" id="prevBtn" aria-label="Previous"><i class="fa-solid fa-backward-step"></i></button><button class="play-main" id="playBtn" aria-label="Play"><i class="fa-solid fa-play"></i></button><button class="control-button" id="nextBtn" aria-label="Next"><i class="fa-solid fa-forward-step"></i></button><button class="control-button" id="repeatBtn" aria-label="Repeat"><i class="fa-solid fa-repeat"></i></button></div>
+      <div class="timeline"><span id="currentTime">0:00</span><div class="progress-track" id="progressBar" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><div class="progress-fill" id="progressFill"></div></div><span id="durationTime">0:00</span></div>
+    </div>
+    <div class="player-extras"><div class="visualizer" id="visualizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><button class="control-button" id="queueBtn" aria-label="Open queue"><i class="fa-solid fa-list-ul"></i></button><i class="fa-solid fa-volume-high volume-icon"></i><input id="volumeSlider" class="volume-slider" type="range" min="0" max="1" step="0.01" value="0.65" aria-label="Volume"></div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="playlistDialog" class="app-dialog"><form method="dialog" id="playlistForm"><div class="dialog-top"><div><p class="eyebrow">MAKE IT YOURS</p><h3>Create playlist</h3></div><button class="icon-button" value="cancel" aria-label="Close"><i class="fa-solid fa-xmark"></i></button></div><label class="field-label" for="playlistName">Playlist name</label><input class="dialog-input" id="playlistName" maxlength="32" placeholder="e.g. Late night drive" required><div class="dialog-actions"><button class="secondary-btn" value="cancel">Cancel</button><button class="primary-btn" id="savePlaylistBtn" value="default">Create playlist</button></div></form></dialog>
   <script src="script.js"></script>
 </body>
 </html>
